@@ -1,18 +1,39 @@
 import React from 'react';
-import './App.css';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { Header } from 'components';
 import Index from './pages/index';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles({
+  wrapper: {
+    textAlign: 'center',
+    height: 'auto',
+    width: '100%',
+  },
+  App: {
+    display: 'inline-block',
+    minHeight: '100vh',
+    flexDirection: 'column',
+    fontSize: 'calc(10px + 2vmin)',
+    color: 'white',
+    width: 1200,
+  },
+});
 
 const App: React.FC = () => {
+  const css = useStyles();
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Index} />
-        </Switch>
-      </Router>
+    <div className={css.wrapper}>
+      <div className={css.App}>
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Index} />
+          </Switch>
+        </Router>
+      </div>
     </div>
   );
-}
+};
 
 export default App;

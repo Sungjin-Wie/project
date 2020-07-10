@@ -1,10 +1,12 @@
 export type IndexState = {
-    value: string;
+  value: string;
 };
 
+export const INPUT = 'index/input';
+
 export type InputAction = {
-    type: string;
-    payload: Record<string, null> | string | undefined;
-}
+  type: typeof INPUT;
+  payload: string;
+};
 
 export type IndexAction = InputAction;
