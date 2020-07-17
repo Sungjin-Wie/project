@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     padding: '1em',
     marginBottom: '2em',
-    background: 'linear-gradient(#e66465, #9198e5)',
+    background: '#95d0f5',
     color: '#fff',
     height: 300,
   },
