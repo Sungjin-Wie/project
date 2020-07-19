@@ -9,6 +9,8 @@ const useStyles = makeStyles({
     textAlign: 'center',
     height: 'auto',
     width: '100%',
+    background: '#95d0f5',
+
   },
   App: {
     display: 'inline-block',
@@ -17,6 +19,7 @@ const useStyles = makeStyles({
     fontSize: 'calc(10px + 2vmin)',
     color: 'white',
     width: 1200,
+    background: 'white',
   },
 });
 
