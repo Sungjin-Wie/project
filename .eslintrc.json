@@ -1,11 +1,13 @@
 {
   "root": true, 
-  "env": 
-  { "node": true, "es6": true },
-  "parserOptions": 
-  { "ecmaVersion": 8, 
-    "ecmaFeatures": 
-    { "jsx": true, 
+  "env": { 
+    "node": true, 
+    "es6": true 
+  },
+  "parserOptions": { 
+    "ecmaVersion": 8, 
+    "ecmaFeatures": { 
+      "jsx": true, 
       "tsx": true
     }
   }, 
