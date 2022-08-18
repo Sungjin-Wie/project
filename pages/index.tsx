@@ -42,7 +42,11 @@ const Home: NextPage = () => {
         <div className={styles.grid}>
           {data.map((crawlingData: any) => {
             return (
-              <a href={crawlingData.link} className={styles.card}>
+              <a
+                key={crawlingData.link}
+                href={crawlingData.link}
+                className={styles.card}
+              >
                 <h2>
                   {crawlingData.price == "" ? "바로가기" : crawlingData.price}{" "}
                   &rarr;
