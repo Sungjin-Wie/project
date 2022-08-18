@@ -16,7 +16,11 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = () => {
-  const { data } = useQuery(["crawling"], getCrawlingData);
+  const { data } = useQuery(["crawling"], getCrawlingData, {
+    staleTime: 10 * 1000, // 10초
+    refetchInterval: 30 * 1000,
+    refetchIntervalInBackground: true,
+  });
   return (
     <div className={styles.container}>
       <Head>
@@ -31,7 +35,7 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
-          Get started by crawling{" "}
+          데이터는 30초마다 갱신됩니다.
           {/* <code className={styles.code}>pages/index.tsx</code> */}
         </p>
 
