@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { getCrawlingData } from "../src/api/crawlingApi";
-import { useEffect } from "react";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -18,9 +17,6 @@ export async function getServerSideProps() {
 
 const Home: NextPage = () => {
   const { data } = useQuery(["crawling"], getCrawlingData);
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <div className={styles.container}>
       <Head>
@@ -40,7 +36,7 @@ const Home: NextPage = () => {
         </p>
 
         <div className={styles.grid}>
-          {data.map((crawlingData: any) => {
+          {data?.map((crawlingData: any) => {
             return (
               <a
                 key={crawlingData.link}
