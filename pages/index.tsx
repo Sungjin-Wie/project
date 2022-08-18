@@ -36,7 +36,7 @@ const Home: NextPage = () => {
         </p>
 
         <div className={styles.grid}>
-          {data.map((crawlingData: any) => {
+          {data?.map((crawlingData: any) => {
             return (
               <a
                 key={crawlingData.link}
