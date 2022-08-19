@@ -1,10 +1,15 @@
 import React from "react";
 import styles from "../../styles/Home.module.css";
+import CrawlingData from "../interface/CrawlingData";
 
-const DataGrid = ({ data }: any) => {
+interface DataGridProps {
+  data: CrawlingData[];
+}
+
+const DataGrid = ({ data }: DataGridProps) => {
   return (
     <div className={styles.grid}>
-      {data?.map((crawlingData: any) => {
+      {data?.map((crawlingData: CrawlingData) => {
         return (
           <a
             key={crawlingData.link}
