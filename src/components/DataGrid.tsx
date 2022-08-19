@@ -1,16 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getCrawlingData } from "../api/crawlingApi";
 import styles from "../../styles/Home.module.css";
 
-const DataGrid = () => {
-  const { data } = useQuery(["crawling"], getCrawlingData, {
-    staleTime: 10 * 1000, // 10초
-    refetchInterval: 30 * 1000,
-    refetchIntervalInBackground: true,
-    suspense: true,
-  });
-
+const DataGrid = ({ data }: any) => {
   return (
     <div className={styles.grid}>
       {data?.map((crawlingData: any) => {
