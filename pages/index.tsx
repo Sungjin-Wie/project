@@ -4,6 +4,9 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { getCrawlingData } from "../src/api/crawlingApi";
+import { Suspense } from "react";
+import DataGrid from "../src/components/DataGrid";
+import LoadingSpinner from "../src/components/LoadingSpinner";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -16,11 +19,6 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = () => {
-  const { data } = useQuery(["crawling"], getCrawlingData, {
-    staleTime: 10 * 1000, // 10초
-    refetchInterval: 30 * 1000,
-    refetchIntervalInBackground: true,
-  });
   return (
     <div className={styles.container}>
       <Head>
@@ -34,26 +32,10 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Playground!</a>
         </h1>
 
-        <p className={styles.description}>
-          데이터는 30초마다 갱신됩니다.
-          {/* <code className={styles.code}>pages/index.tsx</code> */}
-        </p>
-
-        <div className={styles.grid}>
-          {data?.map((crawlingData: any) => {
-            return (
-              <a
-                key={crawlingData.link}
-                href={crawlingData.link}
-                className={styles.card}
-              >
-                <h2>바로가기 &rarr;</h2>
-                <p>{crawlingData.name}</p>
-                {crawlingData.price ?? null}
-              </a>
-            );
-          })}
-        </div>
+        <p className={styles.description}>데이터는 30초마다 갱신됩니다.</p>
+        <Suspense fallback={<LoadingSpinner />}>
+          <DataGrid />
+        </Suspense>
       </main>
       <footer className={styles.footer}>
         <a
