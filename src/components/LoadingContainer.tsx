@@ -1,8 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useSelector } from "../config/redux";
 import Loading from "./LoadingSpinner";
 
-function LoadingContainer({ children }: any) {
+interface LoadingContainerProps {
+  children: ReactNode;
+}
+
+function LoadingContainer({ children }: LoadingContainerProps) {
   const isLoading = useSelector((state) => state.loadingReducer);
   return (
     <>
