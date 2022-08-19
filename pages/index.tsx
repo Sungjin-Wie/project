@@ -7,6 +7,7 @@ import { getCrawlingData } from "../src/api/crawlingApi";
 import { Suspense } from "react";
 import DataGrid from "../src/components/DataGrid";
 import LoadingSpinner from "../src/components/LoadingSpinner";
+import useLoading from "../src/hooks/useLoading";
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -19,6 +20,13 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = () => {
+  const { data, isLoading } = useQuery(["crawling"], getCrawlingData, {
+    staleTime: 10 * 1000, // 10초
+    refetchInterval: 30 * 1000,
+    refetchIntervalInBackground: true,
+  });
+  useLoading(isLoading);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -33,9 +41,7 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>데이터는 30초마다 갱신됩니다.</p>
-        <Suspense fallback={<LoadingSpinner />}>
-          <DataGrid />
-        </Suspense>
+        <DataGrid data={data} />
       </main>
       <footer className={styles.footer}>
         <a
