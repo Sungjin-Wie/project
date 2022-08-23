@@ -46,8 +46,7 @@ const Home: NextPage = () => {
           <h1 className="title">
             Welcome to <a href="https://nextjs.org">Playground!</a>
           </h1>
-          {store}
-          <p className="description">데이터는 30초마다 갱신됩니다.</p>
+          <p className="description">데이터는 30초마다 자동으로 갱신됩니다.</p>
           <button className="refetch-button" onClick={onClickRefetchButton}>
             갱신하기
           </button>
