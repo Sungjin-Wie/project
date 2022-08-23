@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import type { AppProps } from "next/app";
 import {
   Hydrate,
@@ -8,6 +8,9 @@ import {
 } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { store } from "../src/config/redux";
+import LoadingContainer from "../src/components/LoadingContainer";
+
+import "../styles/Home.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -15,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <LoadingContainer>
+            <Component {...pageProps} />
+          </LoadingContainer>
         </Provider>
       </Hydrate>
     </QueryClientProvider>
